@@ -1,0 +1,18 @@
+#!/usr/bin/make -f
+
+export GOPATH=$(CURDIR)/obj-x86_64-linux-gnu
+export DEB_BUILD_OPTIONS=nocheck
+
+%:
+	dh $@ --buildsystem=golang
+
+override_dh_auto_build:
+	go get ./... k8s.io/client-go@latest
+	go build ./...
+	#Create krew bash completion
+	obj-x86_64-linux-gnu/bin/krew completion bash > obj-x86_64-linux-gnu/krew
+	#Create krew zsh completion
+	obj-x86_64-linux-gnu/bin/krew completion zsh > obj-x86_64-linux-gnu/_krew
+
+override_dh_auto_install:
+	dh_auto_install -- --no-source

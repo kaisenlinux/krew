@@ -1,0 +1,19 @@
+Source: krew
+Section: admin
+Priority: optional
+Maintainer: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
+Build-Depends: debhelper-compat (= 13),
+	       golang-go (>= 1.17),
+	       dh-golang,
+Standards-Version: 4.6.0
+Homepage: https://krew.sigs.k8s.io/
+Vcs-Browser: https://gitlab.com/kaisenlinux/packages/krew
+Vcs-Git: https://gitlab.com/kaisenlinux/packages/krew.git
+XS-Go-Import-Path: github.com/kubernetes/client-go
+
+Package: krew
+Architecture: amd64 arm64
+Depends: ${shlibs:Depends},
+	 ${misc:Depends},
+	 golang-go (>= 1.17),
+Description: Find and install kubectl plugins

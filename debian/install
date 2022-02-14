@@ -1,0 +1,4 @@
+obj-x86_64-linux-gnu/bin/krew usr/bin
+obj-x86_64-linux-gnu/krew usr/share/bash-completion/completions/
+obj-x86_64-linux-gnu/_krew usr/share/zsh/vendor-completions/
+debian/krew.png usr/share/pixmaps/
