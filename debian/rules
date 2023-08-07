@@ -1,18 +1,21 @@
 #!/usr/bin/make -f
 
-export GOPATH=$(CURDIR)/obj-x86_64-linux-gnu
-export DEB_BUILD_OPTIONS=nocheck
+export GOPATH=$(CURDIR)/_build
 
 %:
-	dh $@ --buildsystem=golang
+	dh $@ --buildsystem=golang --builddirectory=_build
+
+override_dh_auto_clean:
+	rm -rf $(CURDIR)/obj-x86_64-linux-gnu $(CURDIR)/_build $(CURDIR)/out
 
 override_dh_auto_build:
-	go get ./... k8s.io/client-go@latest
-	go build ./...
-	#Create krew bash completion
-	obj-x86_64-linux-gnu/bin/krew completion bash > obj-x86_64-linux-gnu/krew
-	#Create krew zsh completion
-	obj-x86_64-linux-gnu/bin/krew completion zsh > obj-x86_64-linux-gnu/_krew
+	go get ./...
+	$(CURDIR)/hack/make-binaries.sh
+
+override_dh_auto_test:
 
 override_dh_auto_install:
-	dh_auto_install -- --no-source
+	install -p -m 0755 $(CURDIR)/out/bin/krew-linux_$(DEB_HOST_ARCH) $(CURDIR)/debian/krew/usr/bin/krew
+	install -p -m 0644 $(CURDIR)/debian/krew.png $(CURDIR)/debian/krew/usr/share/pixmaps
+
+override_dh_dwz:

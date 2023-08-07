@@ -1,1 +1,2 @@
-000-static-version-number
+static-version-number
+no-build-with-git

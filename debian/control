@@ -3,8 +3,9 @@ Section: admin
 Priority: optional
 Maintainer: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 Build-Depends: debhelper-compat (= 13),
-	       golang-go (>= 1.17),
+	       golang-go (>= 1.20),
 	       dh-golang,
+	       gox (= 1.0.1-1kaisen),
 Standards-Version: 4.6.0
 Homepage: https://krew.sigs.k8s.io/
 Vcs-Browser: https://gitlab.com/kaisenlinux/packages/krew
@@ -15,5 +16,4 @@ Package: krew
 Architecture: amd64 arm64
 Depends: ${shlibs:Depends},
 	 ${misc:Depends},
-	 golang-go (>= 1.17),
 Description: Find and install kubectl plugins

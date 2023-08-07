@@ -1,0 +1,27 @@
+Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
+
+--- krew-0.4.4.orig/hack/make-binaries.sh
++++ krew-0.4.4/hack/make-binaries.sh
+@@ -25,8 +25,7 @@ if ! command -v "gox" &>/dev/null; then
+   exit 1
+ fi
+ 
+-supported_platforms="darwin/amd64 darwin/arm64 windows/amd64\
+- linux/amd64 linux/arm linux/arm64 linux/ppc64le"
++supported_platforms="linux/amd64 linux/arm64"
+ version_pkg="sigs.k8s.io/krew/internal/version"
+ 
+ cd "${SCRIPTDIR}/.."
+@@ -34,9 +33,9 @@ rm -rf -- "out/"
+ 
+ # Builds
+ echo >&2 "Building binaries for: ${OSARCH:-$supported_platforms}"
+-git_rev="${SHORT_SHA:-$(git rev-parse --short HEAD)}"
+-git_tag="${TAG_NAME:-$(git describe --tags --dirty --always)}"
+-echo >&2 "(Stamping with git tag=${git_tag} rev=${git_rev})"
++#git_rev="${SHORT_SHA:-$(git rev-parse --short HEAD)}"
++#git_tag="${TAG_NAME:-$(git describe --tags --dirty --always)}"
++#echo >&2 "(Stamping with git tag=${git_tag} rev=${git_rev})"
+ 
+ env CGO_ENABLED=0 gox -osarch="${OSARCH:-$supported_platforms}" \
+   -tags netgo \

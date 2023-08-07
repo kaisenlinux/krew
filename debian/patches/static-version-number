@@ -1,13 +1,13 @@
 Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
 
---- krew-0.4.3.orig/internal/version/version.go
-+++ krew-0.4.3/internal/version/version.go
+--- krew-0.4.4.orig/internal/version/version.go
++++ krew-0.4.4/internal/version/version.go
 @@ -27,7 +27,7 @@ var (
  // default "unknown" value.
  func GitCommit() string {
  	if gitCommit == "" {
 -		return "unknown"
-+		return "0.4.3"
++		return "0.4.4"
  	}
  	return gitCommit
  }
@@ -16,7 +16,7 @@ Author: Kevin Chevreuil - Kaisen <kaisen@kaisenlinux.org>
  func GitTag() string {
  	if gitTag == "" {
 -		return "unknown"
-+		return "0.4.3"
++		return "0.4.4"
  	}
  	return gitTag
  }
